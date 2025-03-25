@@ -16,6 +16,7 @@ name = "mobilenetv3_small_latest.pth"
 # name = "vgg_best_model.pth"
 arch='mobilenet'
 # arch='vgg'
+is_update = False
 
 [monitoring]
 THRESHOLD = 10000  # File count threshold
