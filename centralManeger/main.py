@@ -30,6 +30,7 @@ cameraID = config["camera"]["cameraID"]
 CLASSES = config["model"]["classes"]
 MODEL_NAME = config["model"]["name"]
 arch = config["model"]["arch"]
+is_update = config["model"]["is_update"]
 BATCH_SIZE = config["hyperparameters"]["batch_size"]
 EPOCHS = config["hyperparameters"]["epochs"]
 IMG_SIZE = config["hyperparameters"]["img_size"]
@@ -132,6 +133,16 @@ def start_threads(serial_comm, camera):
         threading.Thread(target=train_controller, args=(stop_event, start_train, BATCH_SIZE, EPOCHS, IMG_SIZE, LEARNING_RATE, DATASET_DIR, MODEL_DIR, MODEL_NAME, GPU, classes_queue, arch), daemon=True),
         threading.Thread(target=user_input_listener, daemon=True)
     ]
+
+    # When updating the model, the following two threads should also be started:
+    if is_update:
+        threads.append(
+            threading.Thread(target=monitor_folder, args=(stop_event, start_train, WATCH_DIR, DATASET_DIR, THRESHOLD, CHECK_INTERVAL), daemon=True)
+        )
+        threads.append(
+            threading.Thread(target=train_controller, args=(stop_event, start_train, BATCH_SIZE, EPOCHS, IMG_SIZE, LEARNING_RATE, DATASET_DIR, MODEL_DIR, MODEL_NAME, GPU, classes_queue, arch), daemon=True)
+        )
+
     for thread in threads:
         thread.start()
     return threads
