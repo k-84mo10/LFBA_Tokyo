@@ -1,0 +1,33 @@
+[project]
+name = "centralmaneger"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "k-84mo10",email = "k-84mo10@g.ecc.u-tokyo.ac.jp"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyserial (>=3.5,<4.0)",
+    "opencv-python (>=4.11.0.86,<5.0.0.0)",
+    "torch (>=2.6.0,<3.0.0)",
+    "torchvision (>=0.21.0,<0.22.0)",
+]
+
+[tool.poetry]
+packages = [{include = "centralmaneger", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+
+
+
