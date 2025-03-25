@@ -94,6 +94,7 @@ name = "mobilenetv3_small_latest.pth"
 # name = "vgg_best_model.pth"
 arch = "mobilenet"
 # arch = "vgg"
+is_update = False
 
 [monitoring]
 THRESHOLD = 10000  # File count threshold
@@ -123,6 +124,7 @@ gpu_index = 1
   - `classes`: Define control signal classes.
   - `name`: Specify the model file name.
   - `arch`: Set the model architecture. Currently supports `mobilenet` and `vgg`.
+  - `is_update` : whether to perform continual learning.
 
 - **[monitoring]**:
   - `THRESHOLD`: Number of images before starting training.
