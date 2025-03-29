@@ -1,0 +1,7 @@
+*.log
+*.pyc
+
+*.pth
+
+*.jpg
+*.png
